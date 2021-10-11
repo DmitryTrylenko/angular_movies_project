@@ -1,0 +1,43 @@
+<movies-modals-wrapper [dialogRef]="dialogRef">
+  <h2 *ngIf='data.title' class="modal__title">{{ data.title }}</h2>
+  <form [formGroup]="form" class="modal__main-content" novalidate>
+    <mat-form-field class="modal__field">
+      <input matInput placeholder="Title" formControlName="title" [errorStateMatcher]="matcher">
+
+      <mat-error *ngIf="form.get('title')?.hasError('required')">
+        title is mandatory
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="modal__field">
+      <input matInput type="number" placeholder="Rate" formControlName="rate" [errorStateMatcher]="matcher">
+
+      <mat-error *ngIf="form.get('rate')?.hasError('required')">
+        title is mandatory
+      </mat-error>
+
+      <mat-error *ngIf="form.get('rate')?.hasError('rateNotValid')">
+        rate should be not more than 10
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="modal__field">
+      <textarea matInput placeholder="description" formControlName="description"
+        [errorStateMatcher]="matcher"></textarea>
+
+      <mat-error *ngIf="form.get('description')?.hasError('required')">
+        description is mandatory
+      </mat-error>
+
+    </mat-form-field>
+
+  </form>
+
+  <ng-container ngProjectAs="action-buttons">
+    <button class="modal__button" type="button" mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+    <button class="modal__button" type="button" mat-raised-button [disabled]="!form.dirty"
+      (click)="onReset()">Reset</button>
+  </ng-container>
+</movies-modals-wrapper>

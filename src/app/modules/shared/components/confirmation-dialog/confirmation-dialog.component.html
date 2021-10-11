@@ -1,0 +1,10 @@
+<movies-modals-wrapper [dialogRef]="dialogRef">
+  <h2 *ngIf='data.title' class="modal__title">{{ data.title }}</h2>
+
+  <p class="modal__main-content">{{ data.description }}</p>
+
+  <button class="modal__button" type="button" mat-raised-button color="primary"
+    (click)="dialogRef.close(true)">Confirm</button>
+  <button class="modal__button" type="button" mat-raised-button (click)="dialogRef.close()">Cancel</button>
+
+</movies-modals-wrapper>

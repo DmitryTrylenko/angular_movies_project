@@ -1,0 +1,8 @@
+<button class="close-button" (click)="dialogRef?.close()">
+  <mat-icon aria-hidden="false">close</mat-icon>
+</button>
+<ng-content select="h2"></ng-content>
+<mat-divider></mat-divider>
+<ng-content select=".modal__main-content"></ng-content>
+<mat-divider></mat-divider>
+<ng-content></ng-content>

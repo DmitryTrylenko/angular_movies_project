@@ -1,0 +1,24 @@
+.movie {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  &__title {
+    font-weight: 600;
+    font-size: 42px;
+  }
+
+  &__subtitle {
+    font-weight: 400;
+    font-size: 24px;
+    opacity: .7;
+  }
+
+  &__button {
+    margin-top: 20px;
+    min-width: 120px;
+
+    &+& {
+      margin-left: 20px;
+    }
+  }
+}

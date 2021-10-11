@@ -1,0 +1,31 @@
+<ng-container *ngIf="currentUser$ | async as user; else loading">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div>
+      <span>{{ user.name }}</span>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+
+  </mat-toolbar>
+  <mat-drawer-container>
+    <mat-drawer #drawer mode="side">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let route of routes" [routerLink]="route.url" [routerLinkActive]="['active']"
+          class="menu-item">
+          <mat-icon>{{ route.icon }}</mat-icon>
+          <span>{{ route.name }}</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</ng-container>
+<ng-template #loading>
+  <mat-spinner diameter="30"></mat-spinner>
+</ng-template>

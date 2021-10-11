@@ -1,0 +1,26 @@
+<div class="movies main-layout">
+  <ng-container *ngIf="movies$ | async">
+    <div cdkDropListGroup class="columns">
+      <div class="column">
+        <h2>Need to watch</h2>
+        <div class="draggable-area" cdkDropList [cdkDropListData]="todo" (cdkDropListDropped)="drop($event)">
+          <mat-card *ngFor="let movie of todo" cdkDrag>
+            {{ movie.title | titleFormatter }}
+            <button (click)="removeFromTodo(movie)">x</button>
+          </mat-card>
+        </div>
+      </div>
+
+      <div class="column">
+        <h2>Done</h2>
+        <div class="draggable-area" cdkDropList [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
+          <mat-card *ngFor="let movie of done" cdkDrag>
+            {{ movie.title | titleFormatter }}
+            <button (click)="removeFromDone(movie)">x</button>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

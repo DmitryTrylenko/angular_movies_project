@@ -1,0 +1,14 @@
+<div class="movie main-layout" *ngIf="movie$ | async">
+  <h1 class="movie__title">{{ movie.title | titleFormatter }}</h1>
+  <h4 class="movie__subtitle">rate:</h4>
+  <p>{{ movie.rate | number:'1.1-1' }}</p>
+
+  <h4 class="movie__subtitle">description:</h4>
+
+  <p>{{ movie.description }}</p>
+
+  <button class="movie__button" (click)="edit()" mat-raised-button color="primary">Edit movie</button>
+
+  <button class="movie__button" (click)="remove()" mat-raised-button>Remove movie</button>
+
+</div>

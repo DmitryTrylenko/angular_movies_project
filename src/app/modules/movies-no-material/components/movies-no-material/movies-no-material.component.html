@@ -1,0 +1,11 @@
+<div class="movies main-layout">
+  <h1 class="movies__title">Here you can see the list of movies</h1>
+  <ul class="movies__list">
+    <li *ngFor="let movie of movies | sortByRate; index as i; trackBy: trackById">
+      <span>{{ i + 1 }}</span> {{ movie.title | titleFormatter }} rate: {{ movie.rate | number:'1.1-1' }} <button
+        class="movies__action-button" (click)="removeItem(movie)">x</button>
+    </li>
+  </ul>
+  <p *ngIf="!movies.length" class="movies__list-title">sorry... no movies</p>
+  <button (click)="removeAllMovies()">Remove all movies</button>
+</div>

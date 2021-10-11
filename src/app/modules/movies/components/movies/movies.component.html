@@ -1,0 +1,50 @@
+<div class="movies main-layout">
+  <h1 class="movies__title">Here you can see the list of movies</h1>
+
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Start enter title or rate" #input>
+  </mat-form-field>
+
+  <table [hidden]="!movies.length" mat-table [dataSource]="dataSource" matSort matSortActive="rate"
+    matSortDirection="desc" class="mat-elevation-z8 movies__list">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+      <td mat-cell *matCellDef="let element"> {{ element.title | titleFormatter }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rate </th>
+      <td mat-cell *matCellDef="let element"> {{ element.rate | number:'1.1-1' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="movies__action-button"></th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="goToItem(element); $event.stopImmediatePropagation()">
+          <mat-icon aria-hidden="false">chevron_right</mat-icon>
+        </button>
+        <button (click)="removeItem(element); $event.stopImmediatePropagation()">
+          <mat-icon aria-hidden="false">delete_outline</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" [topRated]="row.rate"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+
+  </table>
+
+  <ng-container *ngIf="!movies.length">
+    <p class="movies__list-title">sorry... no movies</p>
+  </ng-container>
+
+  <button (click)="addNewMovie()" mat-raised-button color="primary">Add new movie</button>
+
+  <button (click)="removeAllMovies()" mat-raised-button [disabled]="!movies.length">Remove all movies</button>
+
+</div>

@@ -1,0 +1,28 @@
+@import 'variables';
+
+.columns {
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.column {
+  width: 40%;
+
+  mat-card {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  mat-card+mat-card {
+    margin-top: 10px;
+  }
+
+  .draggable-area {
+    padding: 10px;
+    min-height: 60px;
+    border-radius: 5px;
+    background: $theme-color-lighter;
+  }
+}
